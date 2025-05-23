@@ -15,7 +15,7 @@ from huggingface_hub import InferenceClient
 
 
 HF_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
-print(type(token))  # <class 'str'>
+print(type(HF_TOKEN))  # <class 'str'>
 
 
 if not HF_TOKEN:
