@@ -14,12 +14,12 @@ import os
 from huggingface_hub import InferenceClient
 
 
-HF_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
-print(type(HF_TOKEN))  # <class 'str'>
+HF_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
 
 
-if not HF_TOKEN:
-    raise ValueError("Hugging Face Token not found in environment!")
+
+#if not HF_TOKEN:
+   # raise ValueError("Hugging Face Token not found in environment!")
 
 client = InferenceClient(token=HF_TOKEN)
 
