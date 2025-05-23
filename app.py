@@ -1,5 +1,6 @@
 import os
 import streamlit as st
+import huggingface_hub
 from huggingface_hub import InferenceClient
 
 from langchain.embeddings import HuggingFaceEmbeddings
@@ -8,6 +9,19 @@ from langchain_core.prompts import PromptTemplate
 
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
+
+import os
+from huggingface_hub import InferenceClient
+
+import streamlit as st
+
+HF_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
+
+if not HF_TOKEN:
+    raise ValueError("Hugging Face Token not found in environment!")
+
+client = InferenceClient(token=HF_TOKEN)
+
 
 
 DB_FAISS_PATH = "vectorstore/db_faiss"
@@ -60,6 +74,7 @@ def get_mistral_response(prompt, HF_TOKEN):
     client = InferenceClient(
         model="mistralai/Mistral-7B-Instruct-v0.3",
         token=HF_TOKEN
+    
     )
     messages = [
         {"role": "system", "content": "You are a helpful assistant."},
@@ -92,7 +107,7 @@ def main():
         st.chat_message('user').markdown(prompt)
         st.session_state.messages.append({'role': 'user', 'content': prompt})
 
-        HF_TOKEN = os.environ.get("HF_TOKEN")
+        HF_TOKEN= os.environ.get("HF_TOKEN")
         if not HF_TOKEN:
             st.error("Hugging Face Token not found in environment!")
             return
@@ -100,7 +115,8 @@ def main():
         try:
             context, source_documents = get_context_from_vectorstore(prompt)
             full_prompt = build_chat_prompt(context, prompt)
-            response = get_mistral_response(full_prompt, HF_TOKEN)
+            response = get_mistral_response(full_prompt, HF_TOKEN
+        )
 
             st.chat_message('assistant').markdown(response)
             sources_text = "\n\n**Source Documents:**\n" + "\n\n".join([doc.metadata.get("source", "") for doc in source_documents])
