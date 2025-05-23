@@ -13,8 +13,6 @@ load_dotenv(find_dotenv())
 import os
 from huggingface_hub import InferenceClient
 
-import streamlit as st
-
 HF_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
 
 if not HF_TOKEN:
