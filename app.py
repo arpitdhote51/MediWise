@@ -13,7 +13,10 @@ load_dotenv(find_dotenv())
 import os
 from huggingface_hub import InferenceClient
 
-HF_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
+
+HF_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
+print(type(token))  # <class 'str'>
+
 
 if not HF_TOKEN:
     raise ValueError("Hugging Face Token not found in environment!")
