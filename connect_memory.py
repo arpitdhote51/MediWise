@@ -1,12 +1,22 @@
+import os
+import streamlit as st
+import huggingface_hub
 from huggingface_hub import InferenceClient
 
-# Your Hugging Face token (keep this secure!)
-#HF_TOKEN = "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"
+from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_core.prompts import PromptTemplate
+
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
+
 import os
 from huggingface_hub import InferenceClient
 
 
 HF_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
+
+
 
 # Initialize the InferenceClient with your token
 client = InferenceClient(
