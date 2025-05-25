@@ -14,7 +14,7 @@ import os
 from huggingface_hub import InferenceClient
 
 
-HF_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
+HF_TOKEN = st.secrets[HUGGINGFACE_API_TOKEN]
 
 
 
