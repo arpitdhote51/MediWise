@@ -12,7 +12,8 @@ load_dotenv(find_dotenv())
 from huggingface_hub import InferenceClient
 
 import os
-hf_token = os.getenv("HF_TOKEN")
+HF_token = os.getenv("HF_TOKEN")
+#HF_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
 
 
 
