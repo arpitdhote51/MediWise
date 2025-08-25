@@ -9,9 +9,7 @@ from langchain_core.prompts import PromptTemplate
 
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
-from huggingface_hub import InferenceClient
 
-import os
 HF_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
 HF_token = os.getenv("HF_TOKEN")
 #HF_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
@@ -19,8 +17,8 @@ HF_token = os.getenv("HF_TOKEN")
 
 
 
-#if not HF_TOKEN:
-   # raise ValueError("Hugging Face Token not found in environment!")
+if not HF_TOKEN:
+   raise ValueError("Hugging Face Token not found in environment!")
 
 client = InferenceClient(token=HF_TOKEN)
 
