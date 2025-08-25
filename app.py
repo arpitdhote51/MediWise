@@ -9,12 +9,11 @@ from langchain_core.prompts import PromptTemplate
 
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
-
-import os
 from huggingface_hub import InferenceClient
 
+import os
+hf_token = os.getenv("HF_TOKEN")
 
-HF_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
 
 
 
